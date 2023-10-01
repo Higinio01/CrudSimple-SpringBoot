@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Estudiantes</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .actions {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+<h1>Listado de Estudiantes</h1>
+<table>
+    <tr>
+        <th>Matrícula</th>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <th>Acciones</th>
+    </tr>
+    <tr th:each="estudiante : ${estudiantes}">
+        <td th:text="${estudiante.matricula}"></td>
+        <td th:text="${estudiante.nombre}"></td>
+        <td th:text="${estudiante.telefono}"></td>
+        <td class="actions">
+            <a th:href="@{/estudiantes/editar/{id}(id=${estudiante.id})}">Editar</a>
+            <a th:href="@{/estudiantes/eliminar/{id}(id=${estudiante.id})}">Eliminar</a>
+        </td>
+    </tr>
+</table>
+<a th:href="@{/estudiantes/nuevo}">Agregar Estudiante</a>
+</body>
+</html>
